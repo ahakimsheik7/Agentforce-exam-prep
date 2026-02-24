@@ -1,204 +1,207 @@
-# 01 – Agent Configuration
+# Enable Agentforce & Review Default Topics and Actions
 
 ## 📘 Domain: AI Agents (35%)
 
-Agent Configuration is a core component of the Salesforce Agentforce Specialist Certification exam.  
-This section focuses on how agents are created, structured, and optimized for correct behavior and routing.
+This section focuses on enabling Agentforce in a Developer Edition org and reviewing default Topics and Actions provided by Salesforce.
+
+This is foundational configuration knowledge tested in the AI Agents domain.
 
 ---
 
-# 🎯 Objective
+# 🎯 Learning Objectives
 
-Understand how to properly configure an Agentforce agent in a Salesforce org, including:
+After completing this section, you should understand how to:
 
-- Agent creation
-- Scope definition
-- Topic configuration
-- Routing logic awareness
-- Testing practices
-- Avoiding overconfiguration
-
----
-
-# 🧠 What Is an Agent?
-
-An Agent in Agentforce is a reasoning layer that:
-
-1. Interprets user input
-2. Matches it to a configured Topic
-3. Applies Prompt instructions
-4. Executes Actions (if defined)
-5. Returns structured output
-
-Agent configuration determines how accurately this process works.
+- Enable Agentforce in a Salesforce org
+- Create an employee agent
+- Grant user access via permission sets
+- Review default Topics and associated Actions
+- Understand how default assets impact configuration decisions
 
 ---
 
-# 🛠 Agent Creation Process
+# 🧠 Key Concepts
 
-## Step 1 – Define the Use Case
+## 1️⃣ Agentforce for Employees
 
-Before creating an agent, clearly define:
+Agentforce for employees allows internal users to:
 
-- Who will use the agent?
-- What specific tasks should it handle?
-- What tasks should it NOT handle?
-- Does it require CRM data access?
-- Will it be deployed internally or externally?
+- Query records
+- Search internal libraries
+- View benefits information
+- Perform task-based workflows
+- Deploy agents into Slack
 
-Exam Tip:
-Agents should be narrowly scoped and aligned to a specific business function.
+This differs from customer-facing agents and focuses on internal productivity.
 
 ---
 
-## Step 2 – Create the Agent
+# 🛠 Step 1 – Enable Agentforce
 
-Within Salesforce Setup:
+Before creating agents, required org features must be enabled.
 
-- Navigate to Agentforce
-- Create a new Agent
-- Define the agent name clearly
-- Add a precise description
+### Enable Einstein
+
+Setup → Einstein Setup  
+Ensure **Turn on Einstein** is enabled.
+
+Exam Note:
+Agentforce depends on Einstein being activated.
+
+---
+
+### Enable Agentforce (Default)
+
+Setup → Salesforce Go  
+Search for: **Agentforce (Default)**  
+Click:
+- Get Started  
+- Turn On  
+- Confirm  
+
+This activates default Agentforce capabilities and assets.
+
+---
+
+# 🗂 Step 2 – Review Default Agent Assets
+
+Navigate to:
+
+Setup → Agentforce Assets
+
+There are two main tabs:
+
+- Topics  
+- Actions  
+
+Understanding these assets is critical before building a custom agent.
+
+---
+
+# 📌 Topics
+
+Topics define:
+
+- Classification description
+- Scope
+- Instructions
+- Associated actions
+
+Example:
+MigrationDefaultTopic
+
+Within a Topic, you can review:
+
+- Topic Configuration
+- This Topic’s Actions
+
+Exam Insight:
+You should always review a Topic’s associated Actions before using it.
+
+---
+
+# ⚙️ Actions
+
+Actions are executable tasks tied to Topics.
+
+They allow the agent to:
+
+- Query Salesforce records
+- Perform updates
+- Retrieve data
+- Execute business logic
+
+Not all Topics require all default Actions.
 
 Best Practice:
-Avoid vague agent names like “General Assistant.”
-Use task-specific naming such as:
-“Internal Case Summary Agent”
-
-Clear naming improves routing and maintainability.
+Customize Topics instead of using them as-is when unnecessary actions exist.
 
 ---
 
-## Step 3 – Configure Topics
+# 🔐 Step 3 – Grant Access
 
-Topics define what the agent is capable of handling.
+Agents require permission sets to allow users to interact with them.
 
-Key considerations:
+Important:
+Agent configuration ≠ user access.
 
-- Only add topics required for the use case
-- Avoid overlapping topic descriptions
-- Write clear and specific topic instructions
-- Test routing across multiple input variations
+Configuration:
+- Building the agent
 
-Exam Risk:
-Adding unnecessary topics increases misclassification.
+Access:
+- Permission set assignment
 
-Minimal configuration improves routing accuracy.
-
----
-
-# ⚠️ Common Configuration Mistakes (Exam Relevant)
-
-## 1. Overconfigured Agent
-
-Adding all available standard topics without need.
-
-Result:
-- Routing confusion
-- Incorrect responses
-- Reduced performance
-
-Correct Approach:
-Only configure required topics.
+Exam Trap:
+An agent can exist but not be usable without proper permission assignment.
 
 ---
 
-## 2. Poor Topic Descriptions
+# 🧪 Step 4 – Testing
 
-Vague topic instructions can cause intent misrouting.
+After enabling Agentforce and reviewing Topics:
 
-Example (Weak):
-“Handles user questions.”
+- Create a simple employee agent
+- Assign permission set
+- Test with multiple task scenarios
+- Observe topic routing behavior
 
-Example (Strong):
-“Summarizes open service cases and extracts key next steps.”
-
----
-
-## 3. Ignoring Scope Boundaries
-
-Agents must have clear limitations.
-
-Prompts should include:
-- What the agent does
-- What it does not do
-- When to decline
+Testing ensures:
+- Correct topic classification
+- Proper action execution
+- No unnecessary topic activation
 
 ---
 
-# 🧪 Testing and Validation
+# ⚠️ Important Updates
 
-Agent configuration must include structured testing.
+## New Agent Builder Experience (Dreamforce 2025)
 
-Test for:
+Salesforce announced an updated Agent Builder experience.
+The process may differ slightly from current UI steps.
 
-- Correct topic selection
-- Edge case inputs
-- Ambiguous user requests
-- Out-of-scope questions
-
-If routing fails:
-- Refine topic descriptions
-- Adjust prompt instructions
-- Reduce topic overlap
-
-Testing is heavily implied in exam scenarios.
+Exam Relevance:
+Understand concepts rather than memorizing UI clicks.
 
 ---
 
-# 🔐 Configuration vs Deployment
+## Data Cloud → Data 360 Rebrand
 
-Agent configuration differs from deployment readiness.
+As of October 2025, Data Cloud is rebranded to Data 360.
 
-Configuration includes:
-- Agent creation
-- Topic setup
-- Prompt alignment
+Functionality remains unchanged.
 
-Deployment includes:
-- Permission sets
-- Connected channels
-- Activation checklist review
-
-Exam Reminder:
-An agent can be configured correctly but not yet production-ready.
+Exam Note:
+Both terms may appear in documentation.
 
 ---
 
-# 🧩 Architecture Flow
+# 📊 Why This Matters for the Exam
 
-User Input  
-→ Topic Match  
-→ Prompt Instructions  
-→ Optional Action Execution  
-→ Structured Response  
+From the AI Agents domain (35%), expect questions about:
 
-Understanding this flow is critical for exam success.
+- Required org setup before building agents
+- Relationship between Topics and Actions
+- Default assets and customization
+- Permission sets and user access
+- Agent availability in Slack
 
----
+Understanding default Topics and Actions helps avoid:
 
-# 📌 Key Takeaways
-
-- Agents should be narrowly scoped.
-- Only required topics should be added.
-- Clear descriptions improve routing.
-- Overconfiguration increases error risk.
-- Testing is essential before deployment.
+- Overconfiguration
+- Misclassification
+- Unnecessary action execution
 
 ---
 
-# 🎯 Exam Focus Summary
+# 🧠 Key Takeaways
 
-Within the AI Agents domain, expect questions on:
-
-- Proper agent setup
-- Topic alignment
-- Routing logic
-- Misconfiguration troubleshooting
-- When to add or remove topics
-
-Understanding configuration principles is foundational to the certification.
+- Einstein must be enabled before Agentforce.
+- Agentforce (Default) activates baseline Topics and Actions.
+- Always review default Topics before using them.
+- Topics contain associated Actions.
+- Permission sets control access.
+- Customization is preferred over blind usage of defaults.
 
 ---
 
-End of Section – Agent Configuration
+End of Section
